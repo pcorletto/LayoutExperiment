@@ -1,15 +1,23 @@
 package com.example.android.layoutexperiment;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
 
     private Toolbar toolbar;
+    private Spinner spinner;
+    String[] values = {"Value 1", "Value 2", "Value 3"};
+    ArrayAdapter<String> spinnerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +26,43 @@ public class MainActivity extends ActionBarActivity {
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+        toolbar.setNavigationIcon(R.drawable.ic_hamburger);
+        getSupportActionBar().setTitle("Title");
+        toolbar.setSubtitle("Subtitle");
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+                values);
+        spinner.setAdapter(spinnerAdapter);
+
+        placeFAB();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(MainActivity.this, "Hamburger pressed. I will add a menu here", Toast.LENGTH_LONG).show();
+
+
+
+            }
+        });
+
+    }
+
+    public void placeFAB(){
+
+        FloatingActionButton myFAB = (FloatingActionButton) findViewById(R.id.myFAB);
+
+        myFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "You clicked me!", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
 
     }
 
@@ -34,13 +79,48 @@ public class MainActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        switch(id) {
 
-        return super.onOptionsItemSelected(item);
+            //noinspection SimplifiableIfStatement
+            case R.id.action_settings:
+
+            {
+                Toast.makeText(MainActivity.this, "Settings pressed!", Toast.LENGTH_LONG).show();
+                return true;
+
+            }
+            case R.id.action_search:
+            {
+
+                Toast.makeText(MainActivity.this, "Search button pressed!", Toast.LENGTH_LONG).show();
+                return true;
+
+            }
+
+            case R.id.action_user:
+
+            {
+
+                Toast.makeText(MainActivity.this, "User button pressed!", Toast.LENGTH_LONG).show();
+                return true;
+            }
+
+            case R.id.action_stuff:
+
+            {
+
+                Toast.makeText(MainActivity.this, "Cool cool cool!", Toast.LENGTH_LONG).show();
+                return true;
+            }
+
+
+            default:
+
+            return super.onOptionsItemSelected(item);
+
+        }
     }
 }

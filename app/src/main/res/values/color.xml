@@ -2,6 +2,7 @@
 
             <color name="ColorPrimary">#FF5722</color>
             <color name="ColorPrimaryDark">#E64A19</color>
+            <color name="ColorAccent">#FF9E80</color>
 
  </resources>
 
