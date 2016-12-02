@@ -25,6 +25,12 @@
 
     </style>
 
+    <style name="SpinnerStyle">
+
+        <item name="android:textColorPrimary">#FFFFFF</item>
+
+    </style>
+
 </resources>
 
 

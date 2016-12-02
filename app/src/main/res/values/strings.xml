@@ -4,5 +4,7 @@
     <string name="app_name">LayoutExperiment</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="morning_title">Morning Landscape</string>
+    <string name="afternoon_title">Afternoon Landscape</string>
 
 </resources>

@@ -8,6 +8,9 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"></Spinner>
+        style="@style/SpinnerStyle"
+        android:popupBackground="@color/ColorPrimary"
+        android:id="@+id/spinner"
+        ></Spinner>
 
 </android.support.v7.widget.Toolbar>
