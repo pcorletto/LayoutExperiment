@@ -3,6 +3,8 @@ package com.example.android.layoutexperiment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +13,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    private RecyclerView landscapeList;
+    private List<Landscape> landscapes;
 
     private Toolbar toolbar;
     private Spinner spinner;
@@ -26,6 +34,16 @@ public class MainActivity extends ActionBarActivity {
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
+        landscapeList = (RecyclerView) findViewById(R.id.rvLandscapes);
+
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+
+        landscapeList.setLayoutManager(llm);
+
+        initializeData();
+        initializeAdapter();
 
         toolbar.setNavigationIcon(R.drawable.ic_hamburger);
         getSupportActionBar().setTitle("Title");
@@ -63,6 +81,29 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+    }
+
+    public void initializeData(){
+
+        landscapes = new ArrayList<>();
+        landscapes.add(new Landscape(R.drawable.landscape,"Morning Landscape"));
+        landscapes.add(new Landscape(R.drawable.afternoon,"Afternoon Landscape"));
+        landscapes.add(new Landscape(R.drawable.night,"Night Landscape"));
+        landscapes.add(new Landscape(R.drawable.koala,"Koala"));
+        landscapes.add(new Landscape(R.drawable.penguins,"Penguins"));
+        landscapes.add(new Landscape(R.drawable.pelican,"Pelican"));
+        landscapes.add(new Landscape(R.drawable.sealion,"Sea Lion"));
+        landscapes.add(new Landscape(R.drawable.seaturtle,"Sea Turtle"));
+
+    }
+
+    public LandscapeAdapter adapter;
+
+    private void initializeAdapter(){
+
+        adapter = new LandscapeAdapter(landscapes);
+        landscapeList.setAdapter(adapter);
 
     }
 
